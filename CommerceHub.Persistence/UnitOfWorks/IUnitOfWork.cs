@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommerceHub.Persistence.UnitOfWork
+namespace CommerceHub.Persistence.UnitOfWorks
 {
 	public interface IUnitOfWork:IDisposable
 	{

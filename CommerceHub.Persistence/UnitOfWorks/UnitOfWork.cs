@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommerceHub.Persistence.UnitOfWork
+namespace CommerceHub.Persistence.UnitOfWorks
 {
 	public class UnitOfWork : IUnitOfWork
 	{
@@ -29,10 +29,6 @@ namespace CommerceHub.Persistence.UnitOfWork
 		{
 			_context = context;
 		}
-
-
-
-
 		public IRepository<User> Users => _users ??= new Repositories<User>(_context);
 
 		public IRepository<Product> Products => _products ??= new Repositories<Product>(_context);
@@ -54,14 +50,9 @@ namespace CommerceHub.Persistence.UnitOfWork
 
 		public IRepository<EmailLog> EmailLogs => _emailLogs??=new Repositories<EmailLog>(_context);
 
-		public void Dispose()
-		{
-			throw new NotImplementedException();
-		}
-
-		public Task<int> SaveChangesAsync()
-		{
-			throw new NotImplementedException();
-		}
+		public void Dispose()=>_context.Dispose();
+		public async Task<int> SaveChangesAsync()=> await _context.SaveChangesAsync();
+		
+		
 	}
 }

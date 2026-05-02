@@ -13,7 +13,7 @@ namespace CommerceHub.Persistence.Repositories
 		Task<List<T>> GetAllAsync();
 		Task<List<T>>FindAsync(Expression<Func<T, bool>> predicate);
 		Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
-		Task AddAsync(T item);çç
+		Task AddAsync(T item);
 		void Remove(T item);
 		void Update(T item);
 		IQueryable<T> Query(); //daha complex sorgular icin yazıdk 

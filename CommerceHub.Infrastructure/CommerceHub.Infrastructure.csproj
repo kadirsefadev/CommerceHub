@@ -8,15 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.15" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.15" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CommerceHub.Application\CommerceHub.Application.csproj" />
     <ProjectReference Include="..\CommerceHub.Persistence\CommerceHub.Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\Payment\" />
   </ItemGroup>
 
 </Project>

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\CommerceHub.Persistence\CommerceHub.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Payment\" />
+  </ItemGroup>
+
 </Project>

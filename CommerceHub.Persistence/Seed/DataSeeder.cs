@@ -1,4 +1,5 @@
-﻿using CommerceHub.Domain.Entities;
+﻿using CommerceHub.Application.Interfaces;
+using CommerceHub.Domain.Entities;
 using CommerceHub.Domain.Enums;
 using CommerceHub.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +14,6 @@ namespace CommerceHub.Persistence.Seed
 {
 	public static class DataSeeder
 	{
-
-
 		public static async Task SeedAsync(AppDbContext context)
 		{
 			await context.Database.MigrateAsync();
@@ -46,7 +45,7 @@ namespace CommerceHub.Persistence.Seed
 				FirstName = "Admin",
 				LastName = "User",
 				Email = "admin@test.com",
-				PasswordHash = "",//sonra yazılacaktır.
+				PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123!"), //D00lVxg2ItibcH0jBivjAO
 				Role = UserRoles.Admin,
 				IsActive = true
 			};

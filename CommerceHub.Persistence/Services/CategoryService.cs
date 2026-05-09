@@ -4,6 +4,7 @@ using CommerceHub.Application.Exceptions;
 using CommerceHub.Application.Interfaces;
 using CommerceHub.Domain.Entities;
 using CommerceHub.Persistence.UnitOfWorks;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +35,14 @@ namespace CommerceHub.Persistence.Services
 			return await GetByIdAsync(category.Id);
 		}
 
-		public Task<CategoryDto> DeleteAsync(int id)
+		public async Task<CategoryDto> DeleteAsync(int id)
 		{
-			throw new NotImplementedException();
+			var category = await _unitOfWork.Categories.GetByIdAsync(id)
+		   ?? throw new NotFoundException($"Kategori  bulunamadı ID: {id}");
+			category.IsDeleted = true;
+			category.UpdatedAt = DateTime.UtcNow;
+			_unitOfWork.Categories.Update(category);
+			await _unitOfWork.SaveChangesAsync();
 		}
 
 		public Task<List<CategoryDto>> GetAllAsync()
@@ -44,9 +50,21 @@ namespace CommerceHub.Persistence.Services
 			throw new NotImplementedException();
 		}
 
-		public Task<CategoryDto> GetByIdAsync(int id)
+		public async Task<CategoryDto> GetByIdAsync(int id)
 		{
-			throw new NotImplementedException();
+			var category = await _unitOfWork.Categories.Query()
+			.Include(x => x.Products)
+			.FirstOrDefaultAsync(x => x.Id == id)
+			?? throw new NotFoundException($"Kategori Bulunamadı ID:{id}");
+
+			return new CategoryDto
+			{
+				Id = id,
+				Name = category.Name,
+				Description = category.Description,
+				ImageUrl = category.ImageUrl,
+				ProductCount=category.Products.Count(x=>x.IsActive)
+			};
 		}
 
 		public Task<CategoryDto> UpdateAsync(CategoryUpdateDto categoryUpdateDto)

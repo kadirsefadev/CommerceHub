@@ -9,9 +9,10 @@ public class Product : BaseEntity
     public int  StockQuantity { get; set; }
     public string? ThumnailUrl  { get; set; }
     public bool IsActive { get; set; } = true;
+    public bool IsDeleted { get; set; } = false;
 
-    //FK 
-    public int CategoryId { get; set; }
+	//FK 
+	public int CategoryId { get; set; }
 
     public Category Category { get; set; } = null!;
     public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();

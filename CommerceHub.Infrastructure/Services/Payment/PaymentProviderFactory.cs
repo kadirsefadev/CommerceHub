@@ -1,15 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CommerceHub.Application.Interfaces.Payment;
+
 namespace CommerceHub.Infrastructure.Services.Payment
 {
-	public static class PaymentProviderFactory
+	public class PaymentProviderFactory : IPaymentProviderFactory
 	{
 
-		public static IPaymentProvider Create(string providerName="fake")
+		public IPaymentProvider Create(string providerName="fake")
 		{
 			return providerName.ToLower() switch
 			{

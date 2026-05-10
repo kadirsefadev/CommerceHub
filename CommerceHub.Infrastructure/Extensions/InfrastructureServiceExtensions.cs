@@ -1,4 +1,4 @@
-﻿using CommerceHub.Application.Interfaces;
+using CommerceHub.Application.Interfaces;
 using CommerceHub.Infrastructure.Options;
 using CommerceHub.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +22,7 @@ public static class InfrastructureServiceExtensions
 		// Services
 		services.AddScoped<IJwtTokenService, JwtTokenService>();
 		services.AddScoped<IEmailService, EmailService>();
+		services.AddScoped<CommerceHub.Application.Interfaces.Payment.IPaymentProviderFactory, CommerceHub.Infrastructure.Services.Payment.PaymentProviderFactory>();
 
 		return services;
 	}

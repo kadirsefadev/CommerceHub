@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -23,7 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CommerceHub.Application\CommerceHub.Application.csproj" />
     <ProjectReference Include="..\CommerceHub.Domain\CommerceHub.Domain.csproj" />
-    <ProjectReference Include="..\CommerceHub.Infrastructure\CommerceHub.Infrastructure.csproj" />
+
   </ItemGroup>
 
 </Project>

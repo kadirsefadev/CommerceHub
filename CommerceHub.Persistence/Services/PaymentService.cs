@@ -1,9 +1,9 @@
-﻿using CommerceHub.Application.DTOs.Payment;
+using CommerceHub.Application.DTOs.Payment;
 using CommerceHub.Application.Exceptions;
 using CommerceHub.Application.Interfaces;
 using CommerceHub.Domain.Entities;
 using CommerceHub.Domain.Enums;
-using CommerceHub.Infrastructure.Services.Payment;
+using CommerceHub.Application.Interfaces.Payment;
 using CommerceHub.Persistence.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,12 +18,13 @@ namespace CommerceHub.Persistence.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEmailService _emailService;
+        private readonly IPaymentProviderFactory _paymentProviderFactory;
 
-
-        public PaymentService(IUnitOfWork unitOfWork, IEmailService emailService)
+        public PaymentService(IUnitOfWork unitOfWork, IEmailService emailService, IPaymentProviderFactory paymentProviderFactory)
         {
             _unitOfWork = unitOfWork;
             _emailService = emailService;
+            _paymentProviderFactory = paymentProviderFactory;
         }
 
 
@@ -36,7 +37,7 @@ namespace CommerceHub.Persistence.Services
 
             if (order.OrderStatus != OrderStatus.Pending)
                 throw new AppException("Sipariş zaten işlenmiş veya iptal edilmiş.");
-            var provider = PaymentProviderFactory.Create("fake");
+            var provider = _paymentProviderFactory.Create("fake");
 
             var providerResult = await provider.ChargeAsync(new PaymentProviderRequest(
                 dto.CardNumber,
@@ -46,7 +47,7 @@ namespace CommerceHub.Persistence.Services
                 dto.Cvv,
                 order.TotalAmount
                 ));
-            var payment = new Payment
+            var payment = new CommerceHub.Domain.Entities.Payment
             {
                 OrderId = order.Id,
                 Amount = order.TotalAmount,

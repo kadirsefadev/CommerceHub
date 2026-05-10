@@ -62,16 +62,16 @@ namespace CommerceHub.Persistence.Seed
 
 			var products = new List<Product>
 			{
-				new(){Name="Apple İphone 15 128GB",Price=48500,StockQuantity=50,CategoryId=electronicID,ThumnailUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/apple/thumb/0005-mtp03tu-a_small.jpg"},
-				new(){Name="Samsung Galaxy S24 256GB",Price=38000,StockQuantity=125,CategoryId=electronicID,ThumnailUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/samsung/thumb/143389-7-1_small.jpg"},
-				new(){Name="Apple Macbook Air M3 8 GB",Price=49639,StockQuantity=5,CategoryId=electronicID,ThumnailUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/apple/thumb/mxct3tu-a_small.jpg"},
+				new(){Name="Apple İphone 15 128GB",Price=48500,StockQuantity=50,CategoryId=electronicID,ThumbnailUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/apple/thumb/0005-mtp03tu-a_small.jpg"},
+				new(){Name="Samsung Galaxy S24 256GB",Price=38000,StockQuantity=125,CategoryId=electronicID,ThumbnailUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/samsung/thumb/143389-7-1_small.jpg"},
+				new(){Name="Apple Macbook Air M3 8 GB",Price=49639,StockQuantity=5,CategoryId=electronicID,ThumbnailUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/apple/thumb/mxct3tu-a_small.jpg"},
 
-				new(){Name="HarryPotter ve Felsefe Taşı",Description="Harry potter felsefe taşı baglangıc serisi ",StockQuantity=75,Price=500,CategoryId=bookID,ThumnailUrl="https://static.periplus.com/kFndxWov6OJOb0LxbIFBOf7GVFMKPgdSXTGWY9Cfex3Wdr1a.GQtmsE1NXLuc.mpg--"},
+				new(){Name="HarryPotter ve Felsefe Taşı",Description="Harry potter felsefe taşı baglangıc serisi ",StockQuantity=75,Price=500,CategoryId=bookID,ThumbnailUrl="https://static.periplus.com/kFndxWov6OJOb0LxbIFBOf7GVFMKPgdSXTGWY9Cfex3Wdr1a.GQtmsE1NXLuc.mpg--"},
 
 
-				new(){Name="HarryPotter Zümrüt anka yoldaşlıgı",Description="Finalden önce son bölüm",Price=1000,StockQuantity=5,CategoryId=bookID,ThumnailUrl="https://target.scene7.com/is/image/Target/GUEST_1c7dc567-7645-4c95-844f-9ab0457f29f1?wid=300&hei=300&fmt=pjpeg"},
-				new(){Name="Pembe İnce Askılı İşlemeli Mini Elbise\r\n",Description="Romantik pembe tonunda, gövdesi zarif işlemeli ve ince askılı kokteyl elbisesi. A-kesim etek formuyla mezuniyet ve partiler için ideal.\r\n\r\n",StockQuantity=50,Price=15000,ThumnailUrl="https://reinamaison.com/wp-content/uploads/2025/10/beaded-short-dress-thin-straps-aline-2-300x300.webp"},
-					new(){Name="Alyce Maxi Dress ",Description="Mandarin Collar Button Down with Detachable Waist Tie in Chocolate",StockQuantity=150,Price=50000,ThumnailUrl="https://saltycrush.com/cdn/shop/collections/shirt_dresses.jpg?crop=center&height=300&v=1774847561&width=300"}
+				new(){Name="HarryPotter Zümrüt anka yoldaşlıgı",Description="Finalden önce son bölüm",Price=1000,StockQuantity=5,CategoryId=bookID,ThumbnailUrl="https://target.scene7.com/is/image/Target/GUEST_1c7dc567-7645-4c95-844f-9ab0457f29f1?wid=300&hei=300&fmt=pjpeg"},
+				new(){Name="Pembe İnce Askılı İşlemeli Mini Elbise\r\n",Description="Romantik pembe tonunda, gövdesi zarif işlemeli ve ince askılı kokteyl elbisesi. A-kesim etek formuyla mezuniyet ve partiler için ideal.\r\n\r\n",StockQuantity=50,Price=15000,ThumbnailUrl="https://reinamaison.com/wp-content/uploads/2025/10/beaded-short-dress-thin-straps-aline-2-300x300.webp"},
+					new(){Name="Alyce Maxi Dress ",Description="Mandarin Collar Button Down with Detachable Waist Tie in Chocolate",StockQuantity=150,Price=50000,ThumbnailUrl="https://saltycrush.com/cdn/shop/collections/shirt_dresses.jpg?crop=center&height=300&v=1774847561&width=300"}
 
 			};
 		}

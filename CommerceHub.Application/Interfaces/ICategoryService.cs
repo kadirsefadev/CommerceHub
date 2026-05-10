@@ -13,8 +13,8 @@ namespace CommerceHub.Application.Interfaces
 		Task<CategoryDto> GetByIdAsync(int id);
 		Task<CategoryDto> CreateAsync(CategoryCreateDto
 			categoryCreateDto);
-		Task<CategoryDto> UpdateAsync(CategoryUpdateDto categoryUpdateDto);
-		Task<CategoryDto> DeleteAsync(int id);
+		Task<CategoryDto> UpdateAsync(int id,CategoryUpdateDto categoryUpdateDto);
+		Task DeleteAsync(int id);
 
 	}
 }

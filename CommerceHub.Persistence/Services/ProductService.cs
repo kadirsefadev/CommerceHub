@@ -33,7 +33,7 @@ namespace CommerceHub.Persistence.Services
 				Description = productDetailDto.Description,
 				Price = productDetailDto.Price,
 				StockQuantity = productDetailDto.StockQuantity,
-				ThumnailUrl = productDetailDto.ThumbnailUrl
+                ThumbnailUrl = productDetailDto.ThumbnailUrl
 			};
 			await _unitOfWork.Products.AddAsync(product);
 			await _unitOfWork.SaveChangesAsync();
@@ -76,7 +76,7 @@ namespace CommerceHub.Persistence.Services
 				Name = x.Name,
 				Price = x.Price,
 				StockQuantity = x.StockQuantity,
-				ThumbnailUrl = x.ThumnailUrl,
+				ThumbnailUrl = x.ThumbnailUrl,
 				CategoryName = x.Category.Name,
 				IsActive = x.IsActive,
 
@@ -104,7 +104,7 @@ namespace CommerceHub.Persistence.Services
 			product.Price = productDetailDto.Price;
 			product.Description = productDetailDto.Description;
 			product.StockQuantity = productDetailDto.StockQuantity;
-			product.ThumnailUrl = product.ThumnailUrl;
+			product.ThumbnailUrl = product.ThumbnailUrl;
 			product.CategoryId= productDetailDto.CategoryId;
 			product.IsActive = productDetailDto.IsActive;
 			product.UpdatedAt= DateTime.UtcNow;
@@ -120,7 +120,7 @@ namespace CommerceHub.Persistence.Services
 			Name = product.Name,
 			Price = product.Price,
 			StockQuantity = product.StockQuantity,
-			ThumbnailUrl = product.ThumnailUrl,
+            ThumbnailUrl = product.ThumbnailUrl,
 			IsActive = product.IsActive,
 			CategoryId = product.CategoryId,
 			CategoryName = product.Category.Name,

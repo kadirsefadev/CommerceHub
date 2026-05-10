@@ -10,8 +10,8 @@ namespace CommerceHub.Application.DTOs.Cart
 	public class CartDto
 	{
 		public int Id { get; set; }
-		public List<CartItem> Items { get; set; } = new();
-		public decimal TotalAmount => Items.Sum(x => x.UnitPrice);//buraya totalprice yazılacak sonrasında
+		public List<CartItemDto> Items { get; set; } = new();
+		public decimal TotalAmount => Items.Sum(x => x.TotalPrice);//buraya totalprice yazılacak sonrasında
 		public int TotalitemCount => Items.Sum(x => x.Quantity);
 	}
 	public class CartItemDto

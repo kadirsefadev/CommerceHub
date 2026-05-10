@@ -5,11 +5,7 @@ using CommerceHub.Application.Interfaces;
 using CommerceHub.Domain.Entities;
 using CommerceHub.Persistence.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CommerceHub.Persistence.Services
 {
@@ -35,7 +31,7 @@ namespace CommerceHub.Persistence.Services
 			return await GetByIdAsync(category.Id);
 		}
 
-		public async Task<CategoryDto> DeleteAsync(int id)
+		public async Task DeleteAsync(int id)
 		{
 			var category = await _unitOfWork.Categories.GetByIdAsync(id)
 		   ?? throw new NotFoundException($"Kategori  bulunamadı ID: {id}");
@@ -45,9 +41,18 @@ namespace CommerceHub.Persistence.Services
 			await _unitOfWork.SaveChangesAsync();
 		}
 
-		public Task<List<CategoryDto>> GetAllAsync()
+		public async Task<List<CategoryDto>> GetAllAsync()
 		{
-			throw new NotImplementedException();
+			return await _unitOfWork.Categories.Query()
+				.Include(x=>x.Products)
+				.Select(x=> new CategoryDto
+				{
+					Id = x.Id,
+					Name = x.Name,
+					Description = x.Description,
+					ImageUrl = x.ImageUrl,
+					ProductCount = x.Products.Count(p => p.IsActive)
+				}).ToListAsync();
 		}
 
 		public async Task<CategoryDto> GetByIdAsync(int id)
@@ -67,9 +72,21 @@ namespace CommerceHub.Persistence.Services
 			};
 		}
 
-		public Task<CategoryDto> UpdateAsync(CategoryUpdateDto categoryUpdateDto)
+		public async Task<CategoryDto> UpdateAsync(int id,CategoryUpdateDto categoryUpdateDto)
 		{
-			throw new NotImplementedException();
+			
+			var category =await _unitOfWork.Categories.GetByIdAsync(id)
+				?? throw new NotFoundException($"Kategori Bulunamadı ID:{id}");
+			category.Name = categoryUpdateDto.Name;
+			category.Description = categoryUpdateDto.Description;
+			category.ImageUrl = categoryUpdateDto.ImageUrl;
+			category.UpdatedAt = DateTime.UtcNow;
+
+			_unitOfWork.Categories.Update(category);
+			await _unitOfWork.SaveChangesAsync();
+			return await GetByIdAsync(id);
+
+
 		}
 	}
 }

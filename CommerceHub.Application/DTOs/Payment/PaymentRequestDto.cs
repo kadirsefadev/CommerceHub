@@ -15,7 +15,7 @@ namespace CommerceHub.Application.DTOs.Payment
 		public string  ExpiryYear { get; set; } = string.Empty;
 		public string  Cvv { get; set; } = string.Empty;
 	}
-	class PaymentResultDto
+	public class PaymentResultDto
 	{
 		public bool  IsSuccess { get; set; }
 		public string? TransactionId { get; set; }

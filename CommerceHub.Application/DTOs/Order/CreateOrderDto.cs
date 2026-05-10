@@ -41,7 +41,7 @@ namespace CommerceHub.Application.DTOs.Order
 		public string ShippingCity { get; set; } = string.Empty;
 		public string ShippingDistrict { get; set; } = string.Empty;
 		public string ShippingFullAddress { get; set; } = string.Empty;
-		public List<OrderItemDto> OrderItemDto { get; set; } = new List<OrderItemDto>();
+		public List<OrderItemDto> Items { get; set; } = new List<OrderItemDto>();
 		public PaymentInfoDto? Payment { get; set; }
 	}
 	public class OrderItemDto

@@ -9,26 +9,30 @@ using System.Threading.Tasks;
 
 namespace CommerceHub.Persistence.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext:DbContext
     {
-        public AppDbContext(DbContextOptions options) : base(options) { }
+
+        public AppDbContext(DbContextOptions options):base(options) {}
 
         public DbSet<User> Users => Set<User>();
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Product> Products => Set<Product>();
-        public DbSet<ProductImage> ProductImages => Set<ProductImage>();
+        public DbSet<ProductImage>ProductImages => Set<ProductImage>();
         public DbSet<Cart> Carts => Set<Cart>();
         public DbSet<CartItem> CartItems => Set<CartItem>();
-        public DbSet<Order> Orders => Set<Order>();
+        public DbSet<Order>Orders => Set<Order>();
         public DbSet<OrderItem> OrderItems => Set<OrderItem>();
         public DbSet<Payment> Payments => Set<Payment>();
         public DbSet<Address> Addresses => Set<Address>();
         public DbSet<EmailLog> EmailLogs => Set<EmailLog>();
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
+
+
     }
 }

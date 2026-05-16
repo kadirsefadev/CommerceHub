@@ -8,34 +8,39 @@ using System.Threading.Tasks;
 
 namespace CommerceHub.Persistence.UnitOfWorks
 {
-    public interface IUnitOfWork : IDisposable
-    {
-        /*
-  Unit of work: birden fazla database işlemini tek bir iş paketinde / transaction
-      gibi yonetme mantığıdır.
+	public interface IUnitOfWork:IDisposable
+	{
+		/*
+		  Unit of work: birden fazla database işlemini tek bir iş paketinde / transactionb gibi yonetme mantıgıdır.
 
-  Unitofwork uygulama icinde yapılan veri değişiklerini takip eden ve bu değişikleri
-      tek bir noktadan commit veya rollback eden tasarımdır.
+		Unitofwork uygulama icinde yapılan veri değişiklerini takip eden ve bu değişikleri tek bir noktadan commit veya rollback eden tasarımdır.
+		
 
-        sipariş oluştu
-        stokdüşücek
-        odeme kaydı olusacak
+		Sipariş Olustu
+		Stok Düşücek 
+		Odeme Kaydı Olusacak
+		 
+		Ya hepsi basarılı olsun yada hic biri olmayacak.
+		 
+		 */
 
-        ya hepsi basarili olsun yada hiç biri olmayacak
 
-  */
+		IRepository<User> Users { get; }
+		IRepository<Product> Products { get; }
+		IRepository<Category> Categories { get; }
+		IRepository<ProductImage> ProductImages { get; }
+		IRepository<Cart> Carts { get; }
+		IRepository<Order> Orders { get; }
+		IRepository<CartItem> CartItems { get; }
+		IRepository<OrderItem> OrderItems { get; }
+		IRepository<Payment> Payments { get; }
+		IRepository<Address> Address { get; }
+		IRepository<EmailLog> EmailLogs { get; }
+		Task<int> SaveChangesAsync();
 
-        IRepository<User> Users { get; }
-        IRepository<Product> Products { get; }
-        IRepository<Category> Categories { get; }
-        IRepository<ProductImage> ProductImages { get; }
-        IRepository<Cart> Carts { get; }
-        IRepository<Order> Orders { get; }
-        IRepository<CartItem> CartItems { get; }
-        IRepository<OrderItem> OrderItems { get; }
-        IRepository<Payment> Payments { get; }
-        IRepository<Address> Address { get; }
-        IRepository<EmailLog> EmailLogs { get; }
-        Task<int> SaveChangesAsync();
-    }
+	  
+
+
+
+	}
 }

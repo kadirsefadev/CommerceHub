@@ -1,25 +1,4 @@
-/*using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CommerceHub.Domain.Entities
-{
-    public class Cart : BaseEntity
-    {
-        public int CartId { get; set; }
-        public Cart Cart { get; set; } = null!;
-        public int ProductId { get; set; }
-        public Product Product { get; set; } = null!;
-
-        public int Quantity { get; set; }
-        public decimal UnitPrice { get; set; } //sepete eklendigindeki fiyat...}
-
-    
-}
-   */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +10,7 @@ namespace CommerceHub.Domain.Entities
     {
         public int UserId { get; set; }
         public User User { get; set; } = null;
-        public ICollection<CartItem> Items { get; set; } = new List<CartItem>();
+        public ICollection<CartItem> Items { get; set; }= new List<CartItem>();
 
     }
 }

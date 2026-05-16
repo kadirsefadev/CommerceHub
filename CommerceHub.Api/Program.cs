@@ -10,12 +10,15 @@ using CommerceHub.Infrastructure.Services;
 using CommerceHub.Application.Interfaces;
 using CommerceHub.Persistence.Services;
 using CommerceHub.Persistence.Seed;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using CommerceHub.Application.Validators;
 
 namespace CommerceHub.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +66,8 @@ namespace CommerceHub.Api
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<DataSeeder>();
 
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
 
             var jwtOptions = builder.Configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>(); // bu kýsým gdip appsettings.json okuyacaktýr ve ayarlarý oradan almamýzý saglayacaktýr. 
 
@@ -99,6 +104,13 @@ namespace CommerceHub.Api
 
 
             app.MapControllers();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var seeder  = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+                await seeder.SeedAsync();
+            }
+
 
             app.Run();
         }

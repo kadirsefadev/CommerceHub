@@ -12,17 +12,28 @@ using System.Threading.Tasks;
 
 namespace CommerceHub.Persistence.Seed
 {
-	public static class DataSeeder
+	public class DataSeeder
 	{
-		public static async Task SeedAsync(AppDbContext context)
+
+		private readonly AppDbContext _context;
+
+        private readonly IPasswordHasher _passwordHasher;
+        public DataSeeder(AppDbContext context, IPasswordHasher passwordHasher)
+        {
+            _context = context;
+            _passwordHasher = passwordHasher;
+        }
+
+
+        public async Task SeedAsync()
 		{
-			await context.Database.MigrateAsync();
-			await SeedCategoriesAsync(context);
-			await SeedAdminUserAsync(context);
-			await SeedProductAsync(context);
+			await _context.Database.MigrateAsync();
+			await SeedCategoriesAsync(_context);
+			await SeedAdminUserAsync(_context);
+			await SeedProductAsync(_context);
 
 		}
-		private static async Task SeedCategoriesAsync(AppDbContext context)
+		private async Task SeedCategoriesAsync(AppDbContext context)
 		{
 			if (await context.Categories.AnyAsync()) return;
 			var categories = new List<Category>
@@ -37,7 +48,7 @@ namespace CommerceHub.Persistence.Seed
 			await context.Categories.AddRangeAsync(categories);
 			await context.SaveChangesAsync();
 		}
-		private static async Task SeedAdminUserAsync(AppDbContext context)
+		private  async Task SeedAdminUserAsync(AppDbContext context)
 		{
 			if(await context.Users.AnyAsync(x=>x.Email=="admin@test.com")) return;
 			var admin = new User
@@ -52,7 +63,7 @@ namespace CommerceHub.Persistence.Seed
 			await context.Users.AddRangeAsync(admin);
 			await context.SaveChangesAsync();
 		}
-		private static async Task SeedProductAsync(AppDbContext context)
+		private  async Task SeedProductAsync(AppDbContext context)
 		{
 			if (await context.Products.AnyAsync()) return;
 

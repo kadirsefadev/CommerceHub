@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 
+
+
 namespace CommerceHub.Persistence.Context
 {
     public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
@@ -12,9 +14,10 @@ namespace CommerceHub.Persistence.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            var optionsBuilder=new DbContextOptionsBuilder<AppDbContext>(); 
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             return new AppDbContext(optionsBuilder.Options);
+
         }
     }
 }

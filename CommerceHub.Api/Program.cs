@@ -13,6 +13,7 @@ using CommerceHub.Persistence.Seed;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using CommerceHub.Application.Validators;
+using CommerceHub.Api.Middleware;
 
 namespace CommerceHub.Api
 {
@@ -89,13 +90,16 @@ namespace CommerceHub.Api
             builder.Services.AddAuthorization();
 
             var app = builder.Build();
+            app.UseMiddleware<GlobalExceptionMiddlaware>();
 
            // builder.Services.AddPersistenceServices
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.MapOpenApi();
+                 app.UseSwagger();
+                 app.UseSwaggerUI();
+
             }
 
 			app.UseHttpsRedirection();
@@ -116,3 +120,4 @@ namespace CommerceHub.Api
         }
     }
 }
+

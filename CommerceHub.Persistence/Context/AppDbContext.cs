@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace CommerceHub.Persistence.Context
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<User> MyProperty => Set<User>();
+        public DbSet<User> Users => Set<User>();
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<ProductImage> ProductImages => Set<ProductImage>();
@@ -23,5 +24,11 @@ namespace CommerceHub.Persistence.Context
         public DbSet<Payment> Payments => Set<Payment>();
         public DbSet<Address> Addresses => Set<Address>();
         public DbSet<EmailLog> EmailLogs => Set<EmailLog>();
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
